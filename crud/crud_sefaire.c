@@ -63,7 +63,7 @@ void supprimer_association(const char *reference_matiere, const char *code_class
     fclose(f); fclose(tmp);
     remove("data/sefaire.csv");
     rename("data/sefaire_tmp.csv", "data/sefaire.csv");
-    if (supprime) printf("Association supprimee !\n"); else printf("Association non trouvee.\n");
+    if (supprime) printf("Association supprimee !\n"); else {printf("Association non trouvee.\n"); remove("data/sefaire_tmp.csv");}
 }
 
 SeFaire* chercher_association(const char *reference_matiere, const char *code_classe) {

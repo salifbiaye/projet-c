@@ -79,7 +79,7 @@ void modifier_etudiant(const char *numero) {
     remove("data/etudiants.csv");
     rename("data/etudiants_tmp.csv", "data/etudiants.csv");
     if (trouve) printf("Etudiant modifie !\n");
-    else printf("Etudiant non trouve.\n");
+    else {printf("Etudiant non trouve.\n"); remove("data/etudiants_tmp.csv");}
 }
 
 void supprimer_etudiant(const char *numero) {
@@ -113,7 +113,7 @@ void supprimer_etudiant(const char *numero) {
     remove("data/etudiants.csv");
     rename("data/etudiants_tmp.csv", "data/etudiants.csv");
     if (supprime) printf("Etudiant supprime !\n");
-    else printf("Etudiant non trouve.\n");
+    else {printf("Etudiant non trouve.\n"); remove("data/etudiants_tmp.csv");}
 }
 
 Etudiant* chercher_etudiant(const char *numero) {

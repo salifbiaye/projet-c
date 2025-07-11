@@ -55,7 +55,7 @@ void modifier_note(const char *numero_etudiant, const char *reference_matiere) {
     fclose(f); fclose(tmp);
     remove("data/notes.csv");
     rename("data/notes_tmp.csv", "data/notes.csv");
-    if (trouve) printf("Note modifiee !\n"); else printf("Note non trouvee.\n");
+    if (trouve) printf("Note modifiee !\n"); else {printf("Note non trouvee.\n"); remove("data/notes_tmp.csv");}
 }
 
 void supprimer_note(const char *numero_etudiant, const char *reference_matiere) {
@@ -79,7 +79,7 @@ void supprimer_note(const char *numero_etudiant, const char *reference_matiere) 
     fclose(f); fclose(tmp);
     remove("data/notes.csv");
     rename("data/notes_tmp.csv", "data/notes.csv");
-    if (supprime) printf("Note supprimee !\n"); else printf("Note non trouvee.\n");
+    if (supprime) printf("Note supprimee !\n"); else {printf("Note non trouvee.\n"); remove("data/notes_tmp.csv");}
 }
 
 Note* chercher_note(const char *numero_etudiant, const char *reference_matiere) {

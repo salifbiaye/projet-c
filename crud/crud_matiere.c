@@ -39,7 +39,7 @@ void modifier_matiere(const char *reference) {
     FILE *tmp = fopen("data/matieres_tmp.csv", "w");
     if (!tmp) { fclose(f); printf("Erreur ecriture temporaire.\n"); return; }
     char ligne[256];
-    fgets(ligne, sizeof(ligne), f); // header
+    fgets(ligne, sizeof(ligne), f); 
     fprintf(tmp, "%s", ligne);
     int trouve = 0;
     char m_ref[20], m_libelle[50];
@@ -55,7 +55,7 @@ void modifier_matiere(const char *reference) {
     fclose(f); fclose(tmp);
     remove("data/matieres.csv");
     rename("data/matieres_tmp.csv", "data/matieres.csv");
-    if (trouve) printf("Matiere modifiee !\n"); else printf("Matiere non trouvee.\n");
+    if (trouve) printf("Matiere modifiee !\n"); else {printf("Matiere non trouvee.\n"); remove("data/matieres_tmp.csv");}
 }
 
 void supprimer_matiere(const char *reference) {
@@ -64,7 +64,7 @@ void supprimer_matiere(const char *reference) {
     FILE *tmp = fopen("data/matieres_tmp.csv", "w");
     if (!tmp) { fclose(f); printf("Erreur ecriture temporaire.\n"); return; }
     char ligne[256];
-    fgets(ligne, sizeof(ligne), f); // header
+    fgets(ligne, sizeof(ligne), f); 
     fprintf(tmp, "%s", ligne);
     int supprime = 0;
     char m_ref[20], m_libelle[50];
@@ -79,7 +79,7 @@ void supprimer_matiere(const char *reference) {
     fclose(f); fclose(tmp);
     remove("data/matieres.csv");
     rename("data/matieres_tmp.csv", "data/matieres.csv");
-    if (supprime) printf("Matiere supprimee !\n"); else printf("Matiere non trouvee.\n");
+    if (supprime) printf("Matiere supprimee !\n"); else {printf("Matiere non trouvee.\n"); remove("data/matieres_tmp.csv");}
 }
 
 Matiere* chercher_matiere(const char *reference) {

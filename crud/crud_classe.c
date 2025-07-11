@@ -38,7 +38,7 @@ void modifier_classe(const char *code) {
     FILE *tmp = fopen("data/classes_tmp.csv", "w");
     if (!tmp) { fclose(f); printf("Erreur ecriture temporaire.\n"); return; }
     char ligne[256];
-    fgets(ligne, sizeof(ligne), f); // header
+    fgets(ligne, sizeof(ligne), f); 
     fprintf(tmp, "%s", ligne);
     int trouve = 0;
     char c_code[20], c_nom[50], c_niveau[20];
@@ -53,7 +53,7 @@ void modifier_classe(const char *code) {
     fclose(f); fclose(tmp);
     remove("data/classes.csv");
     rename("data/classes_tmp.csv", "data/classes.csv");
-    if (trouve) printf("Classe modifiee !\n"); else printf("Classe non trouvee.\n");
+    if (trouve) printf("Classe modifiee !\n"); else {printf("Classe non trouvee.\n"); remove("data/classes_tmp.csv");}
 }
 
 void supprimer_classe(const char *code) {
@@ -62,7 +62,7 @@ void supprimer_classe(const char *code) {
     FILE *tmp = fopen("data/classes_tmp.csv", "w");
     if (!tmp) { fclose(f); printf("Erreur ecriture temporaire.\n"); return; }
     char ligne[256];
-    fgets(ligne, sizeof(ligne), f); // header
+    fgets(ligne, sizeof(ligne), f); 
     fprintf(tmp, "%s", ligne);
     int supprime = 0;
     char c_code[20], c_nom[50], c_niveau[20];
@@ -76,7 +76,7 @@ void supprimer_classe(const char *code) {
     fclose(f); fclose(tmp);
     remove("data/classes.csv");
     rename("data/classes_tmp.csv", "data/classes.csv");
-    if (supprime) printf("Classe supprimee !\n"); else printf("Classe non trouvee.\n");
+    if (supprime) printf("Classe supprimee !\n"); else {printf("Classe non trouvee.\n"); remove("data/classes_tmp.csv");}
 }
 
 Classe* chercher_classe(const char *code) {
@@ -84,7 +84,7 @@ Classe* chercher_classe(const char *code) {
     FILE *f = fopen("data/classes.csv", "r");
     if (!f) return NULL;
     char ligne[256];
-    fgets(ligne, sizeof(ligne), f); // header
+    fgets(ligne, sizeof(ligne), f); 
     char c_code[20], c_nom[50], c_niveau[20];
     while (fscanf(f, "%19[^,],%49[^,],%19[^\n]\n", c_code, c_nom, c_niveau) == 3) {
         if (strcmp(c_code, code) == 0) {
